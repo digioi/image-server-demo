@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>Example</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.2.2/jquery.min.js" charset="utf-8"></script>
+  </head>
+  <body>
+    <img src="/imgres-1" />
+    <img src="/imgres-2" />
+    <img src="/imgres-3" />
+    <script>
+      $.get('/api/all-images', null, function (data){
+        console.log(data)
+        data.forEach(function(file){
+          var name = file.split('.')[0]
+          var aTag = $("<a href=\"/"+name+"\" target=\"_blank\"><img src=\"/"+ name +"\" style=\"width:80px\"/></a>")
+          $('body').append(aTag)
+        })
+      })
+    </script>
+  </body>
+</html>
